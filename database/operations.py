@@ -70,7 +70,6 @@ def insert_games():
     n = rp.espn.get_num_games()
     print("🗑️ Deleted old game data...")
     games_db.delete_all()
-    print("\033c", end='')
     print("⏳ Inserting new data...")
     for index in tqdm(range(0, n)):
         game =rp.espn.get_game(index)
