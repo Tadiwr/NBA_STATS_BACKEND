@@ -10,6 +10,11 @@ team_db = MongoDB(
     collection="teams"
 )
 
+games_db = MongoDB(
+    database="league",
+    collection="games"
+)
+
 def load_status_file():
     file = open("status.json", "r")
     return json.loads(file.read())
@@ -57,4 +62,17 @@ def insert_all_teams():
         print("🥳 Teams were up to date")
 
 
-# Statistical Operations
+# Games Operations
+
+def insert_games():
+    is_done = False
+    index = 0
+    n = rp.espn.get_num_games()
+    print("🗑️ Deleted old game data...")
+    games_db.delete_all()
+    print("\033c", end='')
+    print("⏳ Inserting new data...")
+    for index in tqdm(range(0, n)):
+        game =rp.espn.get_game(index)
+        games_db.insert_one(game)
+    print("✅ Done!, games where updated")
