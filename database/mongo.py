@@ -6,7 +6,7 @@ class MongoDB:
     def __init__(self, database:str, collection:str) -> None:
         self.collection_name = collection
         self.database_name = database
-        print("🍃 Attempting to connect to MongoDB Atlas...")
+        print("⏳ Attempting to connect to MongoDB Atlas...")
         self.uri = "mongodb+srv://tshxng:ShangwA123@nbadatabase.3g1ypoj.mongodb.net/?retryWrites=true&w=majority"
         self.client = MongoClient(self.uri, server_api=ServerApi('1'))
         self.db = self.client[self.database_name]
