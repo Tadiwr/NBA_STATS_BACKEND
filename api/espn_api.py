@@ -19,7 +19,6 @@ class EspnApi:
             "name":team_model.name,
             "location": team_model.location,
             "next_match":team_model.next_match,
-            "next_opp_id":team_model.next_opponent_id
         }
 
         return team_dict
