@@ -15,7 +15,7 @@ class EspnCoreApi:
         offensive = json_string["splits"]["categories"][2]["stats"]
         defensive = json_string["splits"]["categories"][0]["stats"]
 
-        return StatsModel(defensive, offensive).factory()
+        return StatsModel(defensive, offensive, team_id).factory()
 
     def get_all_off_team_stats(self, team_id:int):
         url = self.stats_base_url + f"/{team_id}/statistics"
