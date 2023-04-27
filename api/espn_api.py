@@ -11,17 +11,7 @@ class EspnApi:
 
         team_json = requests.get(self.teams_url + str(id)).text
         team_json = json.loads(team_json)["team"]
-        team_model = TeamModel(team_json)
-
-        team_dict = {
-            "team_id":team_model.team_id,
-            "abbrv":team_model.abbrv,
-            "name":team_model.name,
-            "location": team_model.location,
-            "next_match":team_model.next_match,
-        }
-
-        return team_dict
+        return TeamModel(team_json).factory()
     
     def get_num_games(self):
         scoreboard_json = requests.get(self.scoreboard_url).text

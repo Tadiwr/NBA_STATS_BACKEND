@@ -1,5 +1,6 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from colorama import Fore, Back, Style
 
 class MongoDB:
 
@@ -17,9 +18,11 @@ class MongoDB:
         # Send a ping to confirm a successful connection
         try:
             self.client.admin.command('ping')
-            print("✅ Pinged your deployment. You successfully connected to MongoDB!")
+            print(Fore.GREEN + "✅ Pinged your deployment. You successfully connected to MongoDB!")
+            print(Fore.WHITE)
         except Exception as e:
-            print(e)
+            print(Fore.RED + "Failed to connect to mongo db...")
+            print(Fore.WHITE)
 
     def insert_one(self, data:dict):
         self.col.insert_one(data)
