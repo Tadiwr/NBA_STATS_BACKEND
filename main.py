@@ -4,6 +4,7 @@ import time
 from colorama import Fore, Back, Style
 
 
+
 print("🚗 Running main app...")
 while True:
     op.insert_all_teams()
