@@ -11,11 +11,14 @@ class EspnCoreApi:
 
     def get_summary_team_stats(self, team_id:int):
         url = self.stats_base_url + f"/{team_id}/statistics"
+        record_url = f"http://sports.core.api.espn.com/v2/sports/basketball/leagues/nba/seasons/{self.year}/types/2/teams/{team_id}/records/0?"
+        record_json = requests.get(record_url).text
+        record = json.loads(record_json)["stats"]
         json_string = json.loads(requests.get(url).text)
         offensive = json_string["splits"]["categories"][2]["stats"]
         defensive = json_string["splits"]["categories"][0]["stats"]
 
-        return StatsModel(defensive, offensive, team_id).factory()
+        return StatsModel(defensive, offensive, record, team_id).factory()
 
     def get_all_off_team_stats(self, team_id:int):
         url = self.stats_base_url + f"/{team_id}/statistics"
